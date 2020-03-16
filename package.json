@@ -1,6 +1,6 @@
 {
   "name": "taro-ui",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "UI KIT for Taro",
   "main": "dist/index.js",
   "main:h5": "dist/h5/index.js",
@@ -9,34 +9,29 @@
     "*.css"
   ],
   "types": "./types/index.d.ts",
-  "scripts": {
-    "dev:weapp": "npm run build:weapp -- --watch",
-    "dev:qq": "npm run build:qq -- --watch",
-    "dev:h5": "npm run build:h5 -- --watch",
-    "dev:swan": "npm run build:swan -- --watch",
-    "dev:alipay": "npm run build:alipay -- --watch",
-    "dev:doc": "npm run build:h5-static && node ./build/dev-server",
-    "build:weapp": "taro build --type weapp",
-    "build:qq": "taro build --type qq",
-    "build:h5": "taro build --type h5",
-    "build:swan": "taro build --type swan",
-    "build:alipay": "taro build --type alipay",
-    "build:component": "cross-env TARO_BUILD_TYPE=component taro build --ui",
-    "build:h5-static": "npm run build:h5 && node ./build/build-static",
-    "build:doc": "npm run build:h5-static && node ./build/build-docs",
-    "prepublishOnly": "npm run clean && npm run build:component",
-    "lint": "eslint ./src --fix",
-    "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
-    "lint:style-fix": "stylelint \"src/**/*.scss\" --syntax scss --fix",
-    "test": "cross-env NODE_ENV=test && jest --coverage",
-    "test:ci": "npm run build:h5 && npm run test",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "clean": "rimraf .temp dist coverage"
+  "keywords": [
+    "taro",
+    "taro-ui",
+    "ui"
+  ],
+  "files": [
+    "dist",
+    "types",
+    "src/**/interface.ts",
+    "src/**/*.d.ts"
+  ],
+  "author": "O2Team <aotu.io>",
+  "homepage": "https://taro-ui.aotu.io",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nervjs/taro-ui.git"
   },
+  "license": "MIT",
   "eslintConfig": {
     "extends": [
       "o2team",
-      "taro"
+      "taro",
+      "plugin:prettier/recommended"
     ],
     "parser": "babel-eslint",
     "env": {
@@ -74,8 +69,8 @@
       },
       {
         "files": [
-          "src/components/**/*.test.js",
-          "src/components/**/test.js"
+          "test/**/*.test.js",
+          "test/**/test.js"
         ],
         "rules": {
           "taro/no-stateless-component": "off",
@@ -99,6 +94,7 @@
           "react",
           "@typescript-eslint"
         ],
+        "extends": "plugin:prettier/recommended",
         "env": {
           "jest": true
         },
@@ -191,24 +187,30 @@
       "git add"
     ]
   },
-  "keywords": [
-    "taro",
-    "taro-ui",
-    "ui"
-  ],
-  "files": [
-    "dist",
-    "types",
-    "src/**/interface.ts",
-    "src/**/*.d.ts"
-  ],
-  "author": "O2Team <aotu.io>",
-  "homepage": "https://taro-ui.aotu.io",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:nervjs/taro-ui.git"
+  "scripts": {
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:qq": "npm run build:qq -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "dev:swan": "npm run build:swan -- --watch",
+    "dev:alipay": "npm run build:alipay -- --watch",
+    "dev:doc": "npm run build:h5-static && node ./build/dev-server",
+    "build:weapp": "taro build --type weapp",
+    "build:qq": "taro build --type qq",
+    "build:h5": "taro build --type h5",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:component": "cross-env TARO_BUILD_TYPE=component taro build --ui",
+    "build:h5-static": "npm run build:h5 && node ./build/build-static",
+    "build:doc": "npm run build:h5-static && node ./build/build-docs",
+    "prepublishOnly": "npm run clean && npm run build:component",
+    "lint": "eslint ./src --fix",
+    "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
+    "lint:style-fix": "stylelint \"src/**/*.scss\" --syntax scss --fix",
+    "test": "cross-env NODE_ENV=test && jest --coverage",
+    "test:ci": "npm run build:h5 && npm run test",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "clean": "rimraf .temp dist coverage"
   },
-  "license": "MIT",
   "dependencies": {
     "@types/react": "^16.7.3",
     "bind-decorator": "^1.0.11",
@@ -267,9 +269,11 @@
     "css-loader": "^3.2.1",
     "eslint": "^6.7.2",
     "eslint-config-o2team": "^0.1.6",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-config-taro": "^2.0.3",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^2.1.1",
     "favicons-webpack-plugin": "2.1.0",
@@ -295,6 +299,7 @@
     "ora": "^4.0.3",
     "postcss": "^7.0.2",
     "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
     "qrcode.react": "^1.0.0",
     "react-markdown-loader": "^1.1.14",
     "react-router-dom": "^5.1.2",
